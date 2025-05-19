@@ -11,6 +11,7 @@ function App() {
   })
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -22,17 +23,29 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Form submission logic would go here
-    console.log('Form submitted:', formData)
-    alert('Thank you for your interest! Our counselor will contact you shortly.')
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      education: '',
-      course: 'bsc',
-      message: ''
+    // Let Netlify handle the form data
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        "form-name": "admission-application",
+        ...formData
+      }).toString()
     })
+      .then(() => {
+        setFormSubmitted(true)
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          education: '',
+          course: 'bsc',
+          message: ''
+        })
+      })
+      .catch((error) => {
+        alert("Error submitting form: " + error)
+      })
   }
 
   const toggleMobileMenu = () => {
@@ -45,7 +58,14 @@ function App() {
       <header className="bg-white shadow-md sticky top-0 z-50">
         <div className="container mx-auto py-3 px-4 sm:px-6 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <img src="/logo.jpg" alt="Mewar Flying Club Logo" className="h-12 sm:h-16" />
+            <img 
+              src="/logo.jpg" 
+              alt="Mewar Flying Club Logo - Aircraft Maintenance Training Institute" 
+              className="h-12 sm:h-16" 
+              width="64"
+              height="64"
+              loading="eager"
+            />
             <div>
               <h1 className="text-blue-900 text-lg sm:text-xl font-bold leading-tight">MEWAR FLYING CLUB</h1>
               <p className="text-red-600 text-xs sm:text-sm">Associated with Mewar University</p>
@@ -138,96 +158,119 @@ function App() {
             <h2 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4">Begin Your Journey Today</h2>
             <p className="text-red-600 mb-6"><span className="font-bold">HURRY!</span> Only 60 seats available for the batch of 2025-26</p>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-gray-700 mb-1">Full Name*</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  required 
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-gray-700 mb-1">Email Address*</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  required 
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="phone" className="block text-gray-700 mb-1">Phone Number*</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  required 
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="education" className="block text-gray-700 mb-1">Educational Qualification*</label>
-                <input 
-                  type="text" 
-                  id="education" 
-                  name="education"
-                  value={formData.education}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  placeholder="12th with PCM" 
-                  required 
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="course" className="block text-gray-700 mb-1">Interested Course*</label>
-                <select 
-                  id="course" 
-                  name="course"
-                  value={formData.course}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                  required
+            {formSubmitted ? (
+              <div className="text-center py-8">
+                <div className="text-green-600 text-5xl mb-4">✓</div>
+                <h3 className="text-xl font-bold text-blue-900 mb-2">Thank You!</h3>
+                <p className="text-gray-700 mb-4">Your application has been received. Our counselor will contact you shortly.</p>
+                <button 
+                  onClick={() => setFormSubmitted(false)}
+                  className="bg-blue-900 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-800 transition"
                 >
-                  <option value="bsc">B.Sc. (Hons) Aircraft Maintenance (3 Years)</option>
-                  <option value="diploma">Diploma in Aircraft Maintenance (1 Year)</option>
-                </select>
+                  Submit Another Application
+                </button>
               </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-gray-700 mb-1">Message (Optional)</label>
-                <textarea 
-                  id="message" 
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="3" 
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-              </div>
-              
-              <button 
-                type="submit" 
-                className="w-full bg-red-600 text-white py-3 rounded-md font-medium hover:bg-red-700 transition text-base sm:text-lg"
+            ) : (
+              <form 
+                name="admission-application" 
+                method="POST" 
+                data-netlify="true"
+                onSubmit={handleSubmit}
               >
-                Reserve Your Seat Now
-              </button>
-              
-              <p className="text-sm text-gray-500">By submitting this form, you'll get priority access to counseling sessions.</p>
-            </form>
+                <input type="hidden" name="form-name" value="admission-application" />
+                
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-gray-700 mb-1">Full Name*</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      required 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-gray-700 mb-1">Email Address*</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      required 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="phone" className="block text-gray-700 mb-1">Phone Number*</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      required 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="education" className="block text-gray-700 mb-1">Educational Qualification*</label>
+                    <input 
+                      type="text" 
+                      id="education" 
+                      name="education"
+                      value={formData.education}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      placeholder="12th with PCM" 
+                      required 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="course" className="block text-gray-700 mb-1">Interested Course*</label>
+                    <select 
+                      id="course" 
+                      name="course"
+                      value={formData.course}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      required
+                    >
+                      <option value="bsc">B.Sc. (Hons) Aircraft Maintenance (3 Years)</option>
+                      <option value="diploma">Diploma in Aircraft Maintenance (1 Year)</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-gray-700 mb-1">Message (Optional)</label>
+                    <textarea 
+                      id="message" 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows="3" 
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    ></textarea>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    className="w-full bg-red-600 text-white py-3 rounded-md font-medium hover:bg-red-700 transition text-base sm:text-lg"
+                  >
+                    Reserve Your Seat Now
+                  </button>
+                  
+                  <p className="text-sm text-gray-500">By submitting this form, you'll get priority access to counseling sessions.</p>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>
