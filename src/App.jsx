@@ -124,26 +124,14 @@ function App() {
               <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  // Check if prospectus file exists or display a message
-                  fetch('/prospectus 2025 (3).pdf')
-                    .then(response => {
-                      if (response.ok) {
-                        // File exists, create a download link and click it
-                        const link = document.createElement('a');
-                        link.href = '/prospectus 2025 (3).pdf';
-                        link.download = 'Mewar_Flying_Club_Prospectus_2025.pdf';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                      } else {
-                        // File doesn't exist, show a message
-                        alert('Prospectus PDF is not available yet. Please check back later or contact us for more information.');
-                      }
-                    })
-                    .catch(() => {
-                      // Network error or other issues
-                      alert('Prospectus PDF is not available yet. Please check back later or contact us for more information.');
-                    });
+                  // Direct download from Google Drive
+                  const link = document.createElement('a');
+                  link.href = 'https://drive.google.com/uc?export=download&id=1_oEncQlnsvDGt_P8O8DANxLq65HSqeuQ';
+                  link.download = 'Mewar_Flying_Club_Prospectus_2025.pdf';
+                  link.target = '_blank';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
                 }}
                 className="border-2 border-blue-900 text-blue-900 px-6 py-3 rounded-md font-medium hover:bg-blue-900 hover:text-white transition text-base sm:text-lg text-center sm:text-left"
                 title="Download our detailed course prospectus"
