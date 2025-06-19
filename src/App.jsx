@@ -504,7 +504,7 @@ function App() {
                 
                 <div className="mb-4">
                   <p className="font-semibold text-blue-900">Phone:</p>
-                  <p className="text-gray-700">98XXXXXXXX</p>
+                  <p className="text-gray-700">+91 70118 29259</p>
                 </div>
                 
                 <div className="mb-4">
