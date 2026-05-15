@@ -117,7 +117,7 @@ function App() {
         <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-4">Launch Your Aviation Career</h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-red-600 mb-6">Admissions Open for 2025-2026</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-red-600 mb-6">Admissions Open for 2026-2027</h2>
             <p className="text-gray-700 mb-8 text-base sm:text-lg">Join Mewar Flying Club's prestigious Aircraft Maintenance programs and become a certified aviation professional. Limited seats available!</p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a href="#apply-now" className="bg-red-600 text-white px-6 py-3 rounded-md font-medium hover:bg-red-700 transition text-base sm:text-lg text-center sm:text-left">Apply Now</a>
@@ -144,7 +144,7 @@ function App() {
           {/* Application Form */}
           <div id="apply-now" className="md:w-1/2 bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full">
             <h2 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4">Begin Your Journey Today</h2>
-            <p className="text-red-600 mb-6"><span className="font-bold">HURRY!</span> Only 60 seats available for the batch of 2025-26</p>
+            <p className="text-red-600 mb-6"><span className="font-bold">HURRY!</span> Only 60 seats available for the batch of 2026-2027</p>
             
             {formSubmitted ? (
               <div className="text-center py-8">
@@ -480,7 +480,7 @@ function App() {
               <div className="text-yellow-500 text-xl sm:text-2xl mr-4 flex-shrink-0">⚠️</div>
               <div>
                 <h3 className="text-lg font-bold text-blue-900 mb-2">Important Note:</h3>
-                <p className="text-gray-700">Admissions are on a first-come-first-serve basis with only 60 seats available for the 2025-26 batch. Early applicants will be given preference.</p>
+                <p className="text-gray-700">Admissions are on a first-come-first-serve basis with only 60 seats available for the 2026-2027 batch. Early applicants will be given preference.</p>
               </div>
             </div>
           </div>
@@ -547,7 +547,7 @@ function App() {
                   
                   <div>
                     <p className="font-semibold text-blue-900">When do classes start?</p>
-                    <p className="text-gray-700">Classes for the 2025-26 batch will begin in August 2025.</p>
+                    <p className="text-gray-700">Classes for the 2026-27 batch will begin in August 2026.</p>
                   </div>
                   
                   <div>
@@ -581,7 +581,7 @@ function App() {
             </div>
             
             <div className="text-center md:text-right">
-              <p className="text-sm text-blue-200 mb-2">© 2025 Mewar Flying Club. All rights reserved.</p>
+              <p className="text-sm text-blue-200 mb-2">© 2026 Mewar Flying Club. All rights reserved.</p>
               <p className="text-sm text-blue-200">Approved by DGCA and AICTE</p>
             </div>
           </div>
