@@ -23,8 +23,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Let Netlify handle the form data
-    fetch("/", {
+
+    const netlifySubmit = fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
@@ -32,6 +32,14 @@ function App() {
         ...formData
       }).toString()
     })
+
+    const crmSubmit = fetch("https://crm-mfc.vercel.app/api/leads/public", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    })
+
+    Promise.all([netlifySubmit, crmSubmit])
       .then(() => {
         setFormSubmitted(true)
         setFormData({
