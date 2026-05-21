@@ -12,9 +12,18 @@ function App() {
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [phoneError, setPhoneError] = useState('')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
+    if (name === 'phone') {
+      const digits = value.replace(/\D/g, '')
+      if (digits.length > 0 && digits.length !== 10) {
+        setPhoneError('Phone number must be exactly 10 digits')
+      } else {
+        setPhoneError('')
+      }
+    }
     setFormData({
       ...formData,
       [name]: value
@@ -23,6 +32,11 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const digits = formData.phone.replace(/\D/g, '')
+    if (digits.length !== 10) {
+      setPhoneError('Phone number must be exactly 10 digits')
+      return
+    }
 
     const netlifySubmit = fetch("/", {
       method: "POST",
@@ -204,15 +218,16 @@ function App() {
                   
                   <div>
                     <label htmlFor="phone" className="block text-gray-700 mb-1">Phone Number*</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
+                    <input
+                      type="tel"
+                      id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                      required 
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${phoneError ? 'border-red-500' : ''}`}
+                      required
                     />
+                    {phoneError && <p className="text-red-500 text-sm mt-1">{phoneError}</p>}
                   </div>
                   
                   <div>
