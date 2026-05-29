@@ -149,7 +149,7 @@ function App() {
                   // Direct download from Google Drive
                   const link = document.createElement('a');
                   link.href = 'https://drive.google.com/uc?export=download&id=1_oEncQlnsvDGt_P8O8DANxLq65HSqeuQ';
-                  link.download = 'Mewar_Flying_Club_Prospectus_2025.pdf';
+                  link.download = 'Mewar_Flying_Club_Prospectus_2026.pdf';
                   link.target = '_blank';
                   document.body.appendChild(link);
                   link.click();
@@ -255,7 +255,6 @@ function App() {
                       required
                     >
                       <option value="bsc">B.Sc. (Hons) Aircraft Maintenance (3 Years)</option>
-                      <option value="diploma">Diploma in Aircraft Maintenance (1 Year)</option>
                     </select>
                   </div>
                   
@@ -293,14 +292,14 @@ function App() {
           
           <div className="flex flex-col md:flex-row gap-8">
             {/* BSc Course */}
-            <div className="md:w-1/2 bg-blue-50 rounded-lg p-6 sm:p-8 shadow-md border-t-4 border-blue-700">
+            <div className="bg-blue-50 rounded-lg p-6 sm:p-8 shadow-md border-t-4 border-blue-700">
               <div className="text-blue-700 text-xl sm:text-2xl font-bold mb-4">B.Sc. (Hons) Aircraft Maintenance</div>
               <div className="flex flex-col sm:flex-row sm:justify-between mb-6 gap-2">
                 <span className="text-gray-700">Duration: <span className="font-semibold">3 Years (6 Semesters)</span></span>
                 <span className="bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-bold w-max">DGCA/CAR 66 Compliant</span>
               </div>
               <p className="text-gray-700 mb-6">This comprehensive program prepares you for a successful career in the aviation industry with hands-on experience and theoretical knowledge in aircraft maintenance.</p>
-              
+
               <ul className="mb-6 space-y-2">
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
@@ -319,49 +318,13 @@ function App() {
                   <span>Placement assistance with leading airlines and MROs</span>
                 </li>
               </ul>
-              
+
               <div className="bg-white p-4 rounded-md mb-6">
                 <p className="font-semibold text-blue-900">Key Subjects Include:</p>
                 <p className="text-gray-700">Aircraft Structure, Aerodynamics, Electrical Fundamentals, Electronic Systems, Gas Turbine Engine, Aircraft Maintenance Practices, and more.</p>
               </div>
-              
+
               <a href="#apply-now" className="block text-center bg-blue-700 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-800 transition text-base sm:text-lg">Apply for B.Sc. Program</a>
-            </div>
-            
-            {/* Diploma Course */}
-            <div className="md:w-1/2 bg-red-50 rounded-lg p-6 sm:p-8 shadow-md border-t-4 border-red-600">
-              <div className="text-red-600 text-xl sm:text-2xl font-bold mb-4">Diploma in Aircraft Maintenance</div>
-              <div className="flex flex-col sm:flex-row sm:justify-between mb-6 gap-2">
-                <span className="text-gray-700">Duration: <span className="font-semibold">1 Year</span></span>
-                <span className="bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-bold w-max">Fast-Track Program</span>
-              </div>
-              <p className="text-gray-700 mb-6">A focused program designed to quickly prepare you with essential skills needed for entry-level positions in aircraft maintenance and repair.</p>
-              
-              <ul className="mb-6 space-y-2">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Intensive hands-on training</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Covers fundamentals of aircraft systems</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Industry exposure through workshops</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Fast entry into the workforce</span>
-                </li>
-              </ul>
-              
-              <div className="bg-white p-4 rounded-md mb-6">
-                <p className="font-semibold text-red-600">Perfect For:</p>
-                <p className="text-gray-700">Students who want to quickly enter the aviation maintenance field and gain practical skills that are immediately applicable in the industry.</p>
-              </div>
-              
-              <a href="#apply-now" className="block text-center bg-red-600 text-white px-6 py-3 rounded-md font-medium hover:bg-red-700 transition text-base sm:text-lg">Apply for Diploma Program</a>
             </div>
           </div>
         </div>
